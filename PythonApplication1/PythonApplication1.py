@@ -1,47 +1,23 @@
+ru_string = input()
 
-from tkinter import *
-from tkinter import messagebox
+ru_dictionary = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю',
+                 'я', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
 
+en_dictionary = ['a', 'b', 'v', 'g', 'd', 'e', 'yo', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh', 'sch', "'", 'i', "'", 'e', 'yu',
+                 'ya', 'A', 'B', 'V', 'G', 'D', 'E', 'YO', 'ZH', 'Z', 'I', 'Y', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'CH', 'SH', 'SCH', "'", 'I', "'", 'E', 'YU', 'YA']
 
-def on_closing():
-    if messagebox.askokcancel("Выход из приложения", "Хотите выйти из приложения?"):
-        tk.destroy()
+result = []
 
-tk = Tk()
-tk.protocol("WM_DELETE_WINDOW", on_closing)
-tk.title("Транслитерация")
-tk.resizable(0, 0)
-tk.wm_attributes("-topmost", 1)
-# tk.iconbitmap("bomb-3175208_640.ico")
-
-canvas = Canvas(tk, width=800, height=600, bg="white", highlightthickness=0)
-canvas.pack()
-
-def start_window_1():
-    new_window_1 = Toplevel(tk)
-    new_window_1.title("старт")
-    new_window_1.resizable(0, 0)
-    new_window_1.wm_attributes("-topmost", 1)
-    canvas_1 = Canvas(new_window_1, width=600, height=400, bg="white", highlightthickness=0)
-    canvas_1.pack()
-    canvas_1.create_rectangle(50, 50, 275, 350, fill="lightgray", outline="")
-  
-    canvas_1.create_rectangle(500, 50, 275, 350, fill="lightgreen", outline="")
+for char in ru_string:
+    if char in ru_dictionary:
+        ru_dictionary.index(char)
+        result.append(en_dictionary[ru_dictionary.index(char)])
+    elif char in en_dictionary:
+        en_dictionary.index(char)
+        result.append(ru_dictionary[en_dictionary.index(char)])
+    else:
+              result.append(char)
 
 
-
-
-
-b0 = Button(tk, text="старт", command=start_window_1)
-b0.place(x=200, y=200)
-
-# canvas.create_oval(100, 100, 300, 300, fill="yellow", outline="")
-# canvas.create_oval(120, 120, 280, 280, fill="white", outline="")
-#
-# canvas.create_rectangle(400,100,500,500, fill="lightgreen")
-# canvas.create_rectangle(420,120,480,480, fill="darkgreen", outline="")
-#
-# canvas.create_text(200,500,text="Hello World!", font=("Arial", 40),fill="white")
-
-
-tk.mainloop()
+result = ''.join(result)
+print(result)
